@@ -60,7 +60,7 @@ public class Ajedrez {
         frame.setBounds(100,
                         100,
                         NUM_COLUMNAS * ANCHO_CELDA,
-                        NUM_FILAS * ALTO_CELDA);
+                        NUM_FILAS * ALTO_CELDA + 20);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
