@@ -2,8 +2,9 @@ package ajedrez;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -19,6 +20,7 @@ public class Ajedrez {
     private MouseListenerInternal mouseListener;
     private Pieza[][] tablero;
     private JLabel[][] tableroDeEtiquetas;
+    private Border borde;
 
     /**
      * Launch the application.
@@ -49,6 +51,8 @@ public class Ajedrez {
         frame = new JFrame();
         tableroDeEtiquetas = creaTableroDeEtiquetas();
         tablero = creaTablero();
+        borde = BorderFactory.createLineBorder(Color.GREEN, 3);
+
         // Pon el rey en la última fila en la columna 4
         ponerPieza(NUM_COLUMNAS / 2 - 1, NUM_FILAS - 1, new Rey());
 
@@ -142,6 +146,7 @@ public class Ajedrez {
                     System.out.println("Movimiento inválido, elige otro movimiento");
                 }
 
+                tableroDeEtiquetas[posicionPiezaEnJuego.getColumna()][posicionPiezaEnJuego.getFila()].setBorder(null);
                 hayPiezaEnJuego = false;
                 piezaEnJuego = null;
             } else { // No hay ninguna pieza en juego actualmente, entonces la pieza a la que se le da click ahora está en juego
@@ -155,6 +160,7 @@ public class Ajedrez {
                     return;
                 }
 
+                tableroDeEtiquetas[posicionPiezaEnJuego.getColumna()][posicionPiezaEnJuego.getFila()].setBorder(borde);
                 hayPiezaEnJuego = true;
             }
         }
