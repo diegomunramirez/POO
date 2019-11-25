@@ -8,8 +8,9 @@ public class Rey implements Pieza {
 
     @Override
     public boolean validaMovimiento(PosicionTablero origen, PosicionTablero destino, Pieza[][] tablero) {
+        //valida las reglas del juego del rey, dice si se puede mover
         return Math.abs(origen.getColumna() - destino.getColumna()) <= 1 &&
-               Math.abs(origen.getFila() - destino.getFila()) <= 1; //valida las reglas del juego del rey, dice si se puede mover
+               Math.abs(origen.getFila() - destino.getFila()) <= 1;
     }
 
     @Override

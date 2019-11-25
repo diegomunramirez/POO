@@ -6,12 +6,34 @@ import javax.swing.ImageIcon;
 
 public class Dama implements Pieza {
 
-	public static String directorioDeImagenDama = "src/ajedrez/Dama2.png"; //se pone la direccion de la imagen 
+    UtileriasValidacionDeMovimientos utilerias = new UtileriasValidacionDeMovimientos();
+
+	public static String directorioDeImagenDama = "src/ajedrez/Dama2.png"; //se pone la direccion de la imagen
 
     @Override
     public boolean validaMovimiento(PosicionTablero origen, PosicionTablero destino, Pieza[][] tablero) {
-        return (origen.getFila() == destino.getFila()) || (origen.getColumna() == destino.getColumna()) ||
-        		(Math.abs(origen.getFila()- destino.getFila()) == Math.abs(origen.getColumna()-destino.getColumna()));   //valida las reglas del juego del rey, dice si se puede mover
+        // es un movimiento valido?
+        if (origen.getFila() != destino.getFila() &&
+            origen.getColumna() != destino.getColumna() &&
+            Math.abs(origen.getFila() - destino.getFila()) != Math.abs(origen.getColumna() - destino.getColumna())) {
+            return false;
+        }
+
+        // Valida que no hay piezas en el camino
+        if (utilerias.estanEnMismaLineaHorizontal(origen, destino)) {
+            return !utilerias.hayPiezasEnCaminoDeLineaHorizontal(origen, destino, tablero);
+        }
+        if (utilerias.estanEnMismaLineaVertical(origen, destino)) {
+            return !utilerias.hayPiezasEnCaminoDeLineaVertical(origen, destino, tablero);
+        }
+        if (utilerias.estanEnMismaDiagonal(origen, destino)) {
+            return !utilerias.hayPiezasEnCaminoDiagonal(origen, destino, tablero);
+        }
+        if (utilerias.estanEnMismaDiagonalInvertida(origen, destino)) {
+            return !utilerias.hayPiezasEnCaminoDiagonalInvertida(origen, destino, tablero);
+        }
+
+        return true;
     }
 
     @Override

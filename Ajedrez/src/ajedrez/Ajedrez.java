@@ -59,8 +59,8 @@ public class Ajedrez {
         frame.setBackground(new Color(240, 240, 240));//le damos color al frame
         frame.setBounds(300,
                         150,
-                        NUM_COLUMNAS * ANCHO_CELDA + 50, //le damos tamaño a la ventana depende al numero de columnas (esto por si se desearia agregar mas en un furuto(ingresadas por teclado) la ventana tome las dimensiones adecuadas) 
-                        NUM_FILAS * ALTO_CELDA + 80 );//le damos tamaño a la ventana depende al numero de filas (esto por si se desearia agregar mas en un furuto(ingresadas por teclado) la ventana tome las dimensiones adecuadas)
+                        NUM_COLUMNAS * ANCHO_CELDA + 50, //le damos tamanio a la ventana depende al numero de columnas (esto por si se desearia agregar mas en un furuto(ingresadas por teclado) la ventana tome las dimensiones adecuadas)
+                        NUM_FILAS * ALTO_CELDA + 80 );//le damos tamanio a la ventana depende al numero de filas (esto por si se desearia agregar mas en un furuto(ingresadas por teclado) la ventana tome las dimensiones adecuadas)
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //esto hace que la ejecuccion se detenga cuando se cierra la ventana
         frame.getContentPane().setLayout(null); //nos permite colocar las etiquetas y botones de manera libre en la pantalla
@@ -68,7 +68,7 @@ public class Ajedrez {
 
     private void inicializaPiezasEnElTablero(){
     	
-    	// Pon el rey en la última fila en la columna 4
+    	// Pon el rey en la ï¿½ltima fila en la columna 4
         ponerPieza(NUM_COLUMNAS / 2 , NUM_FILAS - 1, new Rey()); //ponemos al rey su casilla inicial como un objeto de su clase
         ponerPieza(NUM_COLUMNAS / 2 - 1, NUM_FILAS - 1, new Dama());
         
@@ -136,7 +136,7 @@ public class Ajedrez {
         } else {
             label.setBackground(Color.WHITE);//colorea la celda depende a el tablero
         }
-        label.addMouseListener(mouseListener); //se añade a la etiqueta funcion/clase para escuchar los evento del mouse
+        label.addMouseListener(mouseListener); //se aniade a la etiqueta funcion/clase para escuchar los evento del mouse
 
         frame.getContentPane().add(label);
         return label; //regresa la label con las caracteriscas depende al tablero
@@ -164,16 +164,16 @@ public class Ajedrez {
                 double posicionDestinoY = event.getComponent().getY();//se obtiene la posicion de destino en y de la etiqueta
                 PosicionTablero posicionDestino = tranformaCoordenadas(posicionDestinoX, posicionDestinoY);//se convierten a coordenadas de tablero/arreglo
 
-                if (piezaEnJuego.validaMovimiento(posicionPiezaEnJuego, posicionDestino)) {//manda los parametros para ver si cumple las reglas del juego
-                    System.out.println("Movimiento válido, moviendo pieza...");
+                if (piezaEnJuego.validaMovimiento(posicionPiezaEnJuego, posicionDestino, tablero)) {//manda los parametros para ver si cumple las reglas del juego
+                    System.out.println("Movimiento vï¿½lido, moviendo pieza...");
                     muevePieza(piezaEnJuego, posicionPiezaEnJuego, posicionDestino); //llama a la funcion para limpiar la celda/casilla y por consiguiente se coloca en la nueva posicion
                 } else {
-                    System.out.println("Movimiento inválido, elige otro movimiento");//esto cuando se quiere trasladar a una casilla que y no cumple las reglas
+                    System.out.println("Movimiento invï¿½lido, elige otro movimiento");//esto cuando se quiere trasladar a una casilla que y no cumple las reglas
                 }
                 tableroDeEtiquetas[posicionPiezaEnJuego.getColumna()][posicionPiezaEnJuego.getFila()].setBorder(null);//quita el borde a la "pieza seleccionada"
                 hayPiezaEnJuego = false;
                 piezaEnJuego = null;
-            } else { // No hay ninguna pieza en juego actualmente, entonces la pieza a la que se le da click ahora está en juego
+            } else { // No hay ninguna pieza en juego actualmente, entonces la pieza a la que se le da click ahora estï¿½ en juego
                 double x = event.getComponent().getX(); //toma coordenadas en x de la casilla seleccionada
                 double y = event.getComponent().getY();//toma coordenadas en y de la casilla seleccionada
                 posicionPiezaEnJuego = tranformaCoordenadas(x, y); //llama a funcion para transformar en coordenadas de tablero
@@ -191,15 +191,15 @@ public class Ajedrez {
             }
         }
 
-        // Cuando el mouse se presionó y se mantuvo presionado
+        // Cuando el mouse se presionï¿½ y se mantuvo presionado
         public void mousePressed(MouseEvent event) {
         }
 
-        // Cuando el mouse dejó de presionarse
+        // Cuando el mouse dejï¿½ de presionarse
         public void mouseReleased(MouseEvent event) {
         }
 
-        // Cuando el mouse está sobre la etiqueta
+        // Cuando el mouse estï¿½ sobre la etiqueta
         public void mouseEntered(MouseEvent event) {
         }
 
